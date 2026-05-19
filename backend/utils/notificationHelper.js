@@ -15,22 +15,43 @@ const {
 
 const frontendUrl = FRONTEND_URL || "https://newhms.vercel.app";
 
+// const createTransporter = () => {
+//   if (!SMTP_HOST || !SMTP_PORT || !SMTP_USER || !SMTP_PASS) {
+//     console.log("Email transporter is not configured properly.");
+//     return null;
+//   }
+
+//   return nodemailer.createTransport({
+//     host: SMTP_HOST,
+//     port: Number(SMTP_PORT),
+//     secure: Number(SMTP_PORT) === 465,
+//     auth: {
+//       user: SMTP_USER,
+//       pass: SMTP_PASS,
+//     },
+//   });
+// };
+
 const createTransporter = () => {
-  if (!SMTP_HOST || !SMTP_PORT || !SMTP_USER || !SMTP_PASS) {
+
+  if (!SMTP_USER || !SMTP_PASS) {
     console.log("Email transporter is not configured properly.");
     return null;
   }
 
   return nodemailer.createTransport({
-    host: SMTP_HOST,
-    port: Number(SMTP_PORT),
-    secure: Number(SMTP_PORT) === 465,
+    service: "gmail",
+
     auth: {
       user: SMTP_USER,
       pass: SMTP_PASS,
     },
   });
 };
+
+
+
+
 
 const transporter = createTransporter();
 
