@@ -1,0 +1,96 @@
+import { useState } from "react";
+import AdminFacilities from "./AdminFacilities";
+import AdminDoctors from "./AdminDoctors";
+import Adminappointmentslist from "./Adminappointmentslist";
+import PatientsManagement from "./PatientsManagement";
+import AdminContacts from "./AdminContacts";
+import Adminbookdemo from "./Adminbookdemo";
+
+
+const Admin = () => {
+
+    const [tab, setTab] = useState("facilities");
+
+    return (
+        <div className="min-h-screen flex">
+
+            {/* LEFT SIDEBAR */}
+            <div className="w-64 bg-gray-900 text-white p-5">
+
+                <h2 className="text-xl font-bold mb-6">
+                    Admin Panel
+                </h2>
+
+                <button
+                    onClick={() => setTab("facilities")}
+                    className="block w-full text-left p-2 hover:bg-gray-700"
+                >
+                    Facilities
+                </button>
+
+                <button
+                    onClick={() => setTab("doctors")}
+                    className="block w-full text-left p-2 hover:bg-gray-700"
+                >
+                    Doctors
+                </button>
+
+
+                  <button
+                    onClick={() => setTab("Appointment")}
+                    className="block w-full text-left p-2 hover:bg-gray-700"
+                >
+                    appointment
+                </button>
+
+
+
+                    <button
+                    onClick={() => setTab("Patients Management")}
+                    className="block w-full text-left p-2 hover:bg-gray-700"
+                >
+                    Patient Management
+                </button>
+
+                  <button
+                    onClick={() => setTab("Contact Messages")}
+                    className="block w-full text-left p-2 hover:bg-gray-700"
+                >
+                  Contact Messages
+                </button>
+
+                 <button
+
+                  onClick={() => setTab("adminbookdemo")}
+                   
+                    className="block w-full text-left p-2 hover:bg-gray-700"
+                >
+                 adminbookdemo
+                </button>
+
+            </div>
+
+
+            {/* RIGHT CONTENT */}
+            <div className="flex-1 p-6 bg-gray-100">
+
+                {tab === "facilities" && <AdminFacilities />}
+
+                {tab === "doctors" && <AdminDoctors />}
+                {tab === "Appointment" && <Adminappointmentslist />}
+
+                 {tab === "Patients Management" && <PatientsManagement />}
+
+                 {tab === "Contact Messages" && <AdminContacts />}
+
+                  {tab === "adminbookdemo" && <Adminbookdemo />}
+
+
+
+            </div>
+
+        </div>
+    );
+};
+
+export default Admin;
