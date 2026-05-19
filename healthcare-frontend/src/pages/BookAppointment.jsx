@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import API from "../utils/api";
 import {
     getPatientAuthHeaders,
     getPatientToken,
@@ -36,7 +36,7 @@ const BookAppointment = () => {
     const fetchDoctors = async () => {
         try {
             setLoadingDoctors(true);
-            const response = await axios.get("https://newhms.onrender.com/api/doctors/get");
+            const response = await API.get("/doctors/get");
             setDoctors(response.data || []);
         } catch (error) {
             setErrorMessage("Doctors list load nahi ho rahi.");
@@ -58,8 +58,8 @@ const BookAppointment = () => {
         setErrorMessage("");
 
         try {
-            const response = await axios.post(
-                "https://newhms.onrender.com/api/appointments/book",
+            const response = await API.post(
+                "/appointments/book",
                 formData,
                 {
                     headers: getPatientAuthHeaders(),

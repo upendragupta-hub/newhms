@@ -164,7 +164,7 @@
 
 
 import React, { useState } from 'react';
-import axios from 'axios'; // 1. सबसे ऊपर axios को इम्पोर्ट करना न भूलें
+import API from '../utils/api';
 
 const BookDemo = () => {
   const [formData, setFormData] = useState({
@@ -184,8 +184,7 @@ const BookDemo = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // बैकएंड API को हिट कर रहे हैं
-      const response = await axios.post('https://newhms.onrender.com/api/demo/book', formData);
+      const response = await API.post('/demo/book', formData);
       
       if (response.data.success) {
         alert("Demo scheduled successfully!");
