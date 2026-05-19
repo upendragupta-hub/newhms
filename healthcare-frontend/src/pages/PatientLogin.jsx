@@ -17,7 +17,7 @@ const PatientLogin = () => {
 
         try {
             const res = await axios.post(
-                "http://localhost:5000/api/patients/login",
+                "https://newhms.onrender.com/api/patients/login",
                 {
                     email,
                     password,

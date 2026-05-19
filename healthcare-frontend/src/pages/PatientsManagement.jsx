@@ -25,7 +25,7 @@ const AdminPatientManagement = () => {
     const fetchPatients = async () => {
         try {
             const token = localStorage.getItem("token");
-            const res = await axios.get("http://localhost:5000/api/patients/all", {
+            const res = await axios.get("https://newhms.onrender.com/api/patients/all", {
                 headers: { Authorization: `Bearer ${token}` },
                 withCredentials: true
             });
@@ -42,7 +42,7 @@ const AdminPatientManagement = () => {
         if (window.confirm("Kya aap sach mein is patient ka record delete karna chahte hain?")) {
             try {
                 const token = localStorage.getItem("token");
-                await axios.delete(`http://localhost:5000/api/patients/delete/${id}`, {
+                await axios.delete(`https://newhms.onrender.com/api/patients/delete/${id}`, {
                     headers: { Authorization: `Bearer ${token}` },
                     withCredentials: true
                 });

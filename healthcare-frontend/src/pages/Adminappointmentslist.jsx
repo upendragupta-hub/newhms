@@ -6,7 +6,7 @@
 
 //     const fetchAll = async () => {
 //         const token = localStorage.getItem("token");
-//         const res = await axios.get("http://localhost:5000/api/appointments/", {
+//         const res = await axios.get("https://newhms.onrender.com/api/appointments/", {
 //             headers: { Authorization: `Bearer ${token}` }
 //         });
 //         setAppointments(res.data);
@@ -14,7 +14,7 @@
 
 //     const updateStatus = async (id, status) => {
 //         const token = localStorage.getItem("token");
-//         await axios.put(`http://localhost:5000/api/appointments/status/${id}`, { status }, {
+//         await axios.put(`https://newhms.onrender.com/api/appointments/status/${id}`, { status }, {
 //             headers: { Authorization: `Bearer ${token}` }
 //         });
 //         fetchAll(); // List refresh karein
@@ -75,7 +75,7 @@ const AdminAppointments = () => {
             // Localstorage se token nikalein (back-up ke liye)
             const token = localStorage.getItem("token");
 
-            const res = await axios.get("http://localhost:5000/api/appointments/", {
+            const res = await axios.get("https://newhms.onrender.com/api/appointments/", {
                 headers: { 
                     Authorization: `Bearer ${token}` 
                 },
@@ -97,7 +97,7 @@ const AdminAppointments = () => {
     const updateStatus = async (id, status) => {
         try {
             const token = localStorage.getItem("token");
-            await axios.put(`http://localhost:5000/api/appointments/status/${id}`, 
+            await axios.put(`https://newhms.onrender.com/api/appointments/status/${id}`, 
                 { status }, 
                 {
                     headers: { Authorization: `Bearer ${token}` },
@@ -115,7 +115,7 @@ const AdminAppointments = () => {
         if (!window.confirm("Kya aap sach mein is appointment ko delete karna chahte hain?")) return;
         try {
             const token = localStorage.getItem("token");
-            const res = await axios.delete(`http://localhost:5000/api/appointments/delete/${id}`, {
+            const res = await axios.delete(`https://newhms.onrender.com/api/appointments/delete/${id}`, {
                 headers: { Authorization: `Bearer ${token}` },
                 withCredentials: true 
             });

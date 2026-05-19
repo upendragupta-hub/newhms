@@ -36,7 +36,7 @@ const BookAppointment = () => {
     const fetchDoctors = async () => {
         try {
             setLoadingDoctors(true);
-            const response = await axios.get("http://localhost:5000/api/doctors/get");
+            const response = await axios.get("https://newhms.onrender.com/api/doctors/get");
             setDoctors(response.data || []);
         } catch (error) {
             setErrorMessage("Doctors list load nahi ho rahi.");
@@ -59,7 +59,7 @@ const BookAppointment = () => {
 
         try {
             const response = await axios.post(
-                "http://localhost:5000/api/appointments/book",
+                "https://newhms.onrender.com/api/appointments/book",
                 formData,
                 {
                     headers: getPatientAuthHeaders(),

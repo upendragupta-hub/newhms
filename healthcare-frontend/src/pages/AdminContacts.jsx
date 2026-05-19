@@ -10,7 +10,7 @@ const AdminContacts = () => {
         try {
 
             const res = await axios.get(
-                "http://localhost:5000/api/contact"
+                "https://newhms.onrender.com/api/contact"
             );
 
             setContacts(res.data.contacts);

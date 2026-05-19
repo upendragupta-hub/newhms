@@ -31,7 +31,7 @@ const PatientSignup = () => {
 
         try {
             const res = await axios.post(
-                "http://localhost:5000/api/patients/register",
+                "https://newhms.onrender.com/api/patients/register",
                 formData
             );
 

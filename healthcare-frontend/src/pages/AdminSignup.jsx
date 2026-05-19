@@ -38,7 +38,7 @@ const AdminSignup = () => {
 
             await axios.post(
 
-                "http://localhost:5000/api/admin/signup",
+                "https://newhms.onrender.com/api/admin/signup",
 
                 formData
 

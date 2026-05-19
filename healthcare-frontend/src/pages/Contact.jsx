@@ -29,7 +29,7 @@ const Contact = () => {
 
             // BACKEND API
             const res = await axios.post(
-                "http://localhost:5000/api/contact",
+                "https://newhms.onrender.com/api/contact",
                 formData
             );
 

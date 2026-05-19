@@ -7,7 +7,7 @@ function Doctors() {
 
     useEffect(() => {
         axios
-            .get("http://localhost:5000/api/doctors/get")
+            .get("https://newhms.onrender.com/api/doctors/get")
             .then((res) => {
                 setDoctors(res.data);
             })

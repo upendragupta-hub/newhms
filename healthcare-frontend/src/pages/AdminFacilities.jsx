@@ -16,7 +16,7 @@ const AdminFacilities = () => {
     // GET
     const fetchFacilities = async () => {
         try {
-            const res = await axios.get("http://localhost:5000/api/facilities");
+            const res = await axios.get("https://newhms.onrender.com/api/facilities");
             setFacilities(res.data);
         } catch (err) {
             console.log(err);
@@ -44,7 +44,7 @@ const AdminFacilities = () => {
             if (editId) {
 
                 await axios.put(
-                    `http://localhost:5000/api/facilities/${editId}`,
+                    `https://newhms.onrender.com/api/facilities/${editId}`,
                     formData
                 );
 
@@ -53,7 +53,7 @@ const AdminFacilities = () => {
             } else {
 
                 await axios.post(
-                    "http://localhost:5000/api/facilities",
+                    "https://newhms.onrender.com/api/facilities",
                     formData
                 );
 
@@ -78,7 +78,7 @@ const AdminFacilities = () => {
     // DELETE
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/api/facilities/${id}`);
+            await axios.delete(`https://newhms.onrender.com/api/facilities/${id}`);
             fetchFacilities();
         } catch (err) {
             console.log(err);

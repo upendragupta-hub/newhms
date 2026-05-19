@@ -36,7 +36,7 @@ const AdminLogin = () => {
 
             const res = await axios.post(
 
-                "http://localhost:5000/api/admin/login",
+                "https://newhms.onrender.com/api/admin/login",
 
                 formData
 

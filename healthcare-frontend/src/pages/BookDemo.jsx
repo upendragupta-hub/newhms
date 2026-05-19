@@ -185,7 +185,7 @@ const BookDemo = () => {
     e.preventDefault();
     try {
       // बैकएंड API को हिट कर रहे हैं
-      const response = await axios.post('http://localhost:5000/api/demo/book', formData);
+      const response = await axios.post('https://newhms.onrender.com/api/demo/book', formData);
       
       if (response.data.success) {
         alert("Demo scheduled successfully!");

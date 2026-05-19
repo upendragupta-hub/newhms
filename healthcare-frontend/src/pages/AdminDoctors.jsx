@@ -21,7 +21,7 @@ const AdminDoctors = () => {
     // GET DOCTORS
     const fetchDoctors = async () => {
         try {
-            const res = await axios.get("http://localhost:5000/api/doctors/get");
+            const res = await axios.get("https://newhms.onrender.com/api/doctors/get");
             setDoctors(res.data);
         } catch (err) {
             console.log(err);
@@ -51,7 +51,7 @@ const AdminDoctors = () => {
             if (editId) {
 
                 await axios.put(
-                    `http://localhost:5000/api/doctors/${editId}`,
+                    `https://newhms.onrender.com/api/doctors/${editId}`,
                     formData
                 );
 
@@ -60,7 +60,7 @@ const AdminDoctors = () => {
             } else {
 
                 await axios.post(
-                    "http://localhost:5000/api/doctors/add",
+                    "https://newhms.onrender.com/api/doctors/add",
                     formData
                 );
 
@@ -90,7 +90,7 @@ const AdminDoctors = () => {
     // DELETE
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/api/doctors/${id}`);
+            await axios.delete(`https://newhms.onrender.com/api/doctors/${id}`);
             alert("Doctor Deleted");
             fetchDoctors();
         } catch (err) {

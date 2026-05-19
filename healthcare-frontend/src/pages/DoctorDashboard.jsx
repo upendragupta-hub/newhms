@@ -39,11 +39,11 @@ const DoctorDashboard = () => {
             setErrorMessage("");
 
             const [doctorResponse, appointmentsResponse] = await Promise.all([
-                axios.get("http://localhost:5000/api/doctors/me", {
+                axios.get("https://newhms.onrender.com/api/doctors/me", {
                     headers: getDoctorAuthHeaders(),
                 }),
                 axios.get(
-                    "http://localhost:5000/api/appointments/doctor/my-appointments",
+                    "https://newhms.onrender.com/api/appointments/doctor/my-appointments",
                     {
                         headers: getDoctorAuthHeaders(),
                     }
@@ -86,7 +86,7 @@ const DoctorDashboard = () => {
             setUpdatingId(appointmentId);
 
             const response = await axios.put(
-                `http://localhost:5000/api/appointments/doctor/status/${appointmentId}`,
+                `https://newhms.onrender.com/api/appointments/doctor/status/${appointmentId}`,
                 { status: nextStatus },
                 {
                     headers: getDoctorAuthHeaders(),

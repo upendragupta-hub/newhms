@@ -66,7 +66,7 @@ const MyAppointments = () => {
             setErrorMessage("");
 
             const response = await axios.post(
-                `http://localhost:5000/api/appointments/${appointmentId}/razorpay-order`,
+                `https://newhms.onrender.com/api/appointments/${appointmentId}/razorpay-order`,
                 {},
                 {
                     headers: getPatientAuthHeaders(),
@@ -100,7 +100,7 @@ const MyAppointments = () => {
                 handler: async function (razorpayResponse) {
                     try {
                         const paymentConfirm = await axios.patch(
-                            `http://localhost:5000/api/appointments/${appointmentId}/pay`,
+                            `https://newhms.onrender.com/api/appointments/${appointmentId}/pay`,
                             {
                                 paymentMethod: "Razorpay",
                                 paymentReference: razorpayResponse.razorpay_payment_id,
@@ -173,10 +173,10 @@ const MyAppointments = () => {
             setErrorMessage("");
 
             const [profileResponse, appointmentsResponse] = await Promise.all([
-                axios.get("http://localhost:5000/api/patients/me", {
+                axios.get("https://newhms.onrender.com/api/patients/me", {
                     headers: getPatientAuthHeaders(),
                 }),
-                axios.get("http://localhost:5000/api/appointments/my-appointments", {
+                axios.get("https://newhms.onrender.com/api/appointments/my-appointments", {
                     headers: getPatientAuthHeaders(),
                 }),
             ]);
@@ -218,7 +218,7 @@ const MyAppointments = () => {
             setErrorMessage("");
 
             const response = await axios.patch(
-                `http://localhost:5000/api/appointments/${appointmentId}/cancel`,
+                `https://newhms.onrender.com/api/appointments/${appointmentId}/cancel`,
                 {},
                 {
                     headers: getPatientAuthHeaders(),
@@ -267,7 +267,7 @@ const MyAppointments = () => {
             setErrorMessage("");
 
             const response = await axios.patch(
-                `http://localhost:5000/api/appointments/${appointmentId}/pay`,
+                `https://newhms.onrender.com/api/appointments/${appointmentId}/pay`,
                 {
                     paymentMethod: selectedMethod,
                 },

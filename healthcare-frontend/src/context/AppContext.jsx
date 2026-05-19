@@ -6,7 +6,7 @@ const AppContextProvider = (props) => {
     const [token, setToken] = useState(localStorage.getItem('token') || false);
     const [userData, setUserData] = useState(false);
 
-    const backendUrl = "http://localhost:5000"; // Aapka backend URL
+    const backendUrl = "https://newhms.onrender.com"; // Aapka backend URL
 
     const value = {
         token, setToken,

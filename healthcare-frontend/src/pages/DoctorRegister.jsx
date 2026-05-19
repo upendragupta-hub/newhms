@@ -36,8 +36,8 @@ const DoctorAuth = () => {
 
         try {
             const endpoint = isLogin
-                ? "http://localhost:5000/api/doctors/login"
-                : "http://localhost:5000/api/doctors/register";
+                ? "https://newhms.onrender.com/api/doctors/login"
+                : "https://newhms.onrender.com/api/doctors/register";
             const payload = isLogin
                 ? {
                       email: formData.email,

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-    baseURL: 'http://localhost:5000/api', // Aapka backend URL
+    baseURL: 'https://newhms.onrender.com/api', // Aapka backend URL
     withCredentials: true // Cookies (Token) bhejne ke liye
 });
 

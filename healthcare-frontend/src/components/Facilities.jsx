@@ -8,7 +8,7 @@ const Facilities = () => {
     useEffect(() => {
 
         axios
-            .get("http://localhost:5000/api/facilities")
+            .get("https://newhms.onrender.com/api/facilities")
             .then((res) => setFacilities(res.data));
 
     }, []);
