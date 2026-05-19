@@ -126,6 +126,11 @@ function App() {
           element={<BookAppointment />}
         />
 
+        <Route
+          path="/bookdemo"
+          element={<BookDemo />}
+        />
+
         {/* My Appointments */}
         <Route
           path="/my-appointments"
