@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { Link } from "react-router-dom";
+import API from "../utils/api";
 
 const Facilities = () => {
 
     const [facilities, setFacilities] = useState([]);
 
     useEffect(() => {
-
-        axios
-            .get("https://newhms.onrender.com/api/facilities")
-            .then((res) => setFacilities(res.data));
-
+        API.get("/facilities").then((res) => setFacilities(res.data));
     }, []);
 
     return (
@@ -54,9 +51,10 @@ const Facilities = () => {
 
     {facilities.map((item) => (
 
-        <div
+        <Link
             key={item._id}
-            className="group bg-white w-full max-w-sm rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
+            to={`/facility/${item._id}`}
+            className="group block bg-white w-full max-w-sm rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
         >
 
             {/* Image */}
@@ -87,9 +85,9 @@ const Facilities = () => {
 
                 <div className="mt-4 flex justify-between items-center">
 
-                    <button className="text-sm font-medium text-blue-600 hover:text-blue-800">
+                    <span className="text-sm font-medium text-blue-600 transition group-hover:text-blue-800">
                         View Details →
-                    </button>
+                    </span>
 
                     <span className="text-[11px] text-gray-400">
                         24/7
@@ -99,7 +97,7 @@ const Facilities = () => {
 
             </div>
 
-        </div>
+        </Link>
 
     ))}
 

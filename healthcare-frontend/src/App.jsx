@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import FacilityDetails from './pages/FacilityDetails';
 
 import AdminLogin from './pages/AdminLogin';
 import AdminSignup from './pages/AdminSignup';
@@ -131,9 +132,9 @@ function App() {
           element={<MyAppointments />}
         />
 
-         <Route
-          path="/bookdemo"
-          element={<BookDemo />}
+        <Route
+          path="/facility/:id"
+          element={<FacilityDetails />}
         />
 
           </Routes>

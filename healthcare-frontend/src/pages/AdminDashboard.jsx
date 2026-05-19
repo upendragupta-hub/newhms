@@ -5,6 +5,7 @@ import Adminappointmentslist from "./Adminappointmentslist";
 import PatientsManagement from "./PatientsManagement";
 import AdminContacts from "./AdminContacts";
 import Adminbookdemo from "./Adminbookdemo";
+import BedManagement from "./BedManagement";
 
 
 const Admin = () => {
@@ -68,6 +69,13 @@ const Admin = () => {
                  adminbookdemo
                 </button>
 
+                <button
+                    onClick={() => setTab("beds")}
+                    className="block w-full text-left p-2 hover:bg-gray-700"
+                >
+                    Bed Management
+                </button>
+
             </div>
 
 
@@ -84,6 +92,8 @@ const Admin = () => {
                  {tab === "Contact Messages" && <AdminContacts />}
 
                   {tab === "adminbookdemo" && <Adminbookdemo />}
+
+                  {tab === "beds" && <BedManagement />}
 
 
 
