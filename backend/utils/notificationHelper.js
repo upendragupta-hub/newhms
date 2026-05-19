@@ -372,5 +372,14 @@ export const sendBookingNotifications = async ({
     );
   }
 
-  await Promise.allSettled(results);
+  const settledResults = await Promise.allSettled(results);
+  const deliveredCount = settledResults.filter(
+    (result) => result.status === "fulfilled" && result.value === true
+  ).length;
+
+  console.log(
+    `Notification summary for "${subject}": ${deliveredCount}/${settledResults.length} delivered.`
+  );
+
+  return settledResults;
 };
