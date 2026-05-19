@@ -37,7 +37,7 @@ function App() {
   return (
 
     <BrowserRouter>
-      <div className="flex min-h-screen flex-col bg-[var(--color-bg)] text-[var(--color-text)] transition-colors duration-300">
+      <div className="flex min-h-screen flex-col overflow-x-hidden bg-[var(--color-bg)] text-[var(--color-text)] transition-colors duration-300">
 
         <Navbar />
 

@@ -82,8 +82,8 @@ const AdminPatientManagement = () => {
                 </div>
             </div>
 
-            <div className="bg-white shadow-xl rounded-xl overflow-hidden border border-gray-100">
-                <table className="w-full text-left border-collapse">
+            <div className="overflow-x-auto bg-white shadow-xl rounded-xl border border-gray-100">
+                <table className="min-w-[720px] w-full text-left border-collapse">
                     <thead className="bg-blue-600 text-white text-sm uppercase">
                         <tr>
                             <th className="p-4">Patient Details</th>
