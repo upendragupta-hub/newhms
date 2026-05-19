@@ -14,6 +14,26 @@ const getFacilities = async (req, res) => {
   }
 };
 
+// GET Facility by id
+const getFacility = async (req, res) => {
+  try {
+    const facility = await Facility.findById(req.params.id);
+
+    if (!facility) {
+      return res.status(404).json({
+        message: "Facility not found",
+      });
+    }
+
+    res.status(200).json(facility);
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to fetch facility",
+      error: error.message,
+    });
+  }
+};
+
 
 
 // ADD Facility

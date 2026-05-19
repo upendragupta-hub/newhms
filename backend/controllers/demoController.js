@@ -1,4 +1,5 @@
 import DemoRequest from '../models/DemoRequest.js'; // ध्यान दें: ES Module में .js लिखना जरूरी होता है
+import { sendBookingNotifications } from '../utils/notificationHelper.js';
 
 // @desc    Create a new demo request
 // @route   POST /api/demo/book
@@ -21,6 +22,14 @@ export const bookDemo = async (req, res) => {
       hospitalName,
       preferredDate,
       notes
+    });
+
+    void sendBookingNotifications({
+      type: "demo",
+      contactEmail: email,
+      contactPhone: phone,
+      subject: "Demo request received",
+      message: `Hi ${fullName}, your demo request for ${hospitalName} on ${preferredDate} has been received. Our team will contact you shortly.`,
     });
 
     res.status(201).json({

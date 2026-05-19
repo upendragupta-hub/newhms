@@ -30,6 +30,7 @@ import contactRoutes from "./routes/contactRoutes.js";
 
 import productRoutes from "./routes/productRoutes.js";
 import demoRoutes from './routes/demoRoutes.js';
+import bedRoutes from './routes/bedRoutes.js';
 
 
 
@@ -121,6 +122,11 @@ app.use(
 
 
 
+
+app.use(
+    "/api/beds",
+    bedRoutes
+);
 
 app.use('/api/demo', demoRoutes);
 

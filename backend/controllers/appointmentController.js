@@ -3,6 +3,7 @@ import Razorpay from "razorpay";
 import Appointment from "../models/Appointment.js";
 import Doctor from "../models/Doctor.js";
 import Patient from "../models/Patient.js";
+import { sendBookingNotifications } from "../utils/notificationHelper.js";
 
 const getRazorpayClient = () => {
     const keyId = process.env.RAZORPAY_KEY_ID?.trim();
@@ -512,6 +513,14 @@ export const createAppointment = async (req, res) => {
         const [formattedAppointment] = await attachPatientHistory([
             populatedAppointment,
         ]);
+
+        void sendBookingNotifications({
+            type: "appointment",
+            contactEmail: patientData.email,
+            contactPhone: patientData.phone,
+            subject: "Appointment booked successfully",
+            message: `Dear ${patientData.name}, your appointment with Dr. ${doctorData.name} on ${normalizedDate.toDateString()} at ${slotTime} has been confirmed. Appointment ID: ${appointment._id}.`,
+        });
 
         res.status(201).json({
             success: true,

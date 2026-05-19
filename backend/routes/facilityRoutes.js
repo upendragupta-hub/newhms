@@ -2,6 +2,7 @@ import express from "express";
 
 import {
   getFacilities,
+  getFacility,
   addFacility,
   deleteFacility,
   updateFacility,
@@ -12,6 +13,7 @@ const router = express.Router();
 
 // GET
 router.get("/", getFacilities);
+router.get("/:id", getFacility);
 
 
 // POST
