@@ -1,16 +1,11 @@
 import nodemailer from "nodemailer";
 
 const {
-  SMTP_HOST,
-  SMTP_PORT,
   SMTP_USER,
   SMTP_PASS,
   NOTIFICATION_FROM_EMAIL,
   NOTIFICATION_ADMIN_EMAIL,
   FRONTEND_URL,
-  TWILIO_ACCOUNT_SID,
-  TWILIO_AUTH_TOKEN,
-  TWILIO_WHATSAPP_FROM,
 } = process.env;
 
 const frontendUrl = FRONTEND_URL || "https://newhms.vercel.app";
