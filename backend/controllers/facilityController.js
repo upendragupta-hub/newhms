@@ -93,6 +93,7 @@ const updateFacility = async (req, res) => {
 export  {
   getFacilities,
   addFacility,
+  getFacility,
   deleteFacility,
   updateFacility,
 };
