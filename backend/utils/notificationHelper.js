@@ -34,13 +34,38 @@ const createTransporter = () => {
 
 const transporter = createTransporter();
 
+// const sendEmail = async ({ to, subject, text, html }) => {
+//   if (!transporter || !to) {
+//     console.log("Skipping email due to missing configuration or recipient.");
+//     return false;
+//   }
+
+//   try {
+//     await transporter.sendMail({
+//       from: NOTIFICATION_FROM_EMAIL || SMTP_USER,
+//       to,
+//       subject,
+//       text,
+//       html,
+//     });
+//     return true;
+//   } catch (error) {
+//     console.error("Email send error:", error);
+//     return false;
+//   }
+// };
+
 const sendEmail = async ({ to, subject, text, html }) => {
+
   if (!transporter || !to) {
     console.log("Skipping email due to missing configuration or recipient.");
     return false;
   }
 
   try {
+
+    console.log("Sending email to:", to);
+
     await transporter.sendMail({
       from: NOTIFICATION_FROM_EMAIL || SMTP_USER,
       to,
@@ -48,12 +73,20 @@ const sendEmail = async ({ to, subject, text, html }) => {
       text,
       html,
     });
+
+    console.log("Email sent successfully");
+
     return true;
+
   } catch (error) {
+
     console.error("Email send error:", error);
+
     return false;
   }
 };
+
+
 
 const sendWhatsAppMessage = async ({ to, body }) => {
   if (!TWILIO_ACCOUNT_SID || !TWILIO_AUTH_TOKEN || !TWILIO_WHATSAPP_FROM || !to) {
