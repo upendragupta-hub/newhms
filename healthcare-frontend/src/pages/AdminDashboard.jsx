@@ -13,10 +13,10 @@ const Admin = () => {
     const [tab, setTab] = useState("facilities");
 
     return (
-        <div className="min-h-screen flex">
+        <div className="min-h-screen flex flex-col md:flex-row">
 
             {/* LEFT SIDEBAR */}
-            <div className="w-64 bg-gray-900 text-white p-5">
+            <div className="md:w-64 w-full bg-gray-900 text-white p-5">
 
                 <h2 className="text-xl font-bold mb-6">
                     Admin Panel
@@ -81,6 +81,7 @@ const Admin = () => {
 
             {/* RIGHT CONTENT */}
             <div className="flex-1 p-6 bg-gray-100">
+                <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 
                 {tab === "facilities" && <AdminFacilities />}
 
@@ -95,8 +96,7 @@ const Admin = () => {
 
                   {tab === "beds" && <BedManagement />}
 
-
-
+                </div>
             </div>
 
         </div>

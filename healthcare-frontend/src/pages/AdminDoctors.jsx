@@ -118,6 +118,7 @@ const AdminDoctors = () => {
 
     return (
         <div className="min-h-screen bg-gray-100 p-5">
+            <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 
             {/* FORM */}
             <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl shadow max-w-2xl mx-auto">
@@ -162,7 +163,7 @@ const AdminDoctors = () => {
             </form>
 
             {/* LIST */}
-            <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-5 mt-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8">
 
                 {doctors.map((doc) => (
                     <div key={doc._id} className="bg-white p-4 rounded shadow">
@@ -201,6 +202,7 @@ const AdminDoctors = () => {
                     </div>
                 ))}
 
+            </div>
             </div>
 
         </div>

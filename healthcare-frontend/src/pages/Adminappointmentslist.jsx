@@ -135,7 +135,8 @@ const AdminAppointments = () => {
 
     return (
         <div className="p-5">
-            <div className="flex justify-between items-center mb-4">
+            <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col sm:flex-row justify-between items-center mb-4 gap-3">
                 <h2 className="text-2xl font-bold">Manage Bookings</h2>
                 <button onClick={fetchAll} className="bg-blue-500 text-white px-3 py-1 rounded text-sm">Refresh</button>
             </div>
@@ -169,10 +170,10 @@ const AdminAppointments = () => {
                                     </td>
                                     <td className="p-3 text-center space-x-2">
                                         {app.status === 'Pending' && (
-                                            <>
+                                            <div className="inline-flex gap-2">
                                                 <button onClick={() => updateStatus(app._id, 'Confirmed')} className="bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded text-xs">Approve</button>
                                                 <button onClick={() => updateStatus(app._id, 'Cancelled')} className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-xs">Reject</button>
-                                            </>
+                                            </div>
                                         )}
                                         <button onClick={() => deleteAppointment(app._id)} className="bg-red-700 hover:bg-red-800 text-white px-2 py-1 rounded text-xs">Delete</button>
                                     </td>
@@ -186,6 +187,7 @@ const AdminAppointments = () => {
                     </tbody>
                 </table>
             </div>
+        </div>
         </div>
     );
 };

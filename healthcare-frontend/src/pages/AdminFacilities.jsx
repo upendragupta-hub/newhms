@@ -98,6 +98,7 @@ const AdminFacilities = () => {
 
     return (
         <div className="p-5">
+            <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 
             <h2 className="text-2xl font-bold mb-4">Facilities Admin</h2>
 
@@ -135,7 +136,7 @@ const AdminFacilities = () => {
             </form>
 
             {/* LIST */}
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
                 {facilities.map((item) => (
                     <div key={item._id} className="bg-white p-3 shadow">
@@ -166,6 +167,7 @@ const AdminFacilities = () => {
                     </div>
                 ))}
 
+            </div>
             </div>
 
         </div>

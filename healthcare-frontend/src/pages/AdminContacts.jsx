@@ -26,15 +26,14 @@ const AdminContacts = () => {
 
     return (
 
-        <div>
+        <div className="p-5">
+            <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 
-            <h1 className="text-3xl font-bold mb-6">
-                Contact Messages
-            </h1>
+            <h1 className="text-3xl font-bold mb-6">Contact Messages</h1>
 
             <div className="bg-white rounded-lg shadow-md overflow-x-auto">
 
-                <table className="w-full">
+                <table className="min-w-full">
 
                     <thead className="bg-blue-600 text-white">
 
@@ -105,6 +104,7 @@ const AdminContacts = () => {
 
             </div>
 
+        </div>
         </div>
     );
 };
