@@ -113,6 +113,9 @@ const Navbar = () => {
 
                     {patient ? (
                         <>
+                            <NavLink to="/my-account" className={navLinkStyle}>
+                                My Account
+                            </NavLink>
                             <NavLink to="/my-appointments" className={navLinkStyle}>
                                 My Panel
                             </NavLink>
@@ -185,6 +188,9 @@ const Navbar = () => {
 
                     {patient ? (
                         <>
+                            <NavLink to="/my-account" className={navLinkStyle} onClick={handleLinkClick}>
+                                My Account
+                            </NavLink>
                             <NavLink to="/my-appointments" className={navLinkStyle} onClick={handleLinkClick}>
                                 My Panel
                             </NavLink>
