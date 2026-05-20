@@ -283,6 +283,7 @@ const MyAccount = () => {
                     ))}
                 </div>
             )}
+            </section>
         </div>
     );
 };

@@ -15,21 +15,21 @@ function Doctors() {
     }, []);
 
     return (
-        <section className="mx-auto max-w-7xl px-4 py-10">
+        <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
             <div className="mb-8 text-center">
                 <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-600">
                     Doctors
                 </p>
-                <h1 className="mt-3 text-4xl font-bold text-[var(--color-text)]">
+                <h1 className="mt-3 text-4xl font-bold text-(--color-text)">
                     Meet Our Doctors
                 </h1>
-                <p className="mx-auto mt-3 max-w-2xl text-sm text-[var(--color-muted)]">
+                <p className="mx-auto mt-3 max-w-2xl text-sm text-(--color-muted)">
                     Experienced specialists ready to help with consultations,
                     treatment planning, and follow-up care.
                 </p>
             </div>
 
-            <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
                 {doctors.map((doc) => (
                     <article
                         key={doc._id}

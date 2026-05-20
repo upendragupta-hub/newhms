@@ -10,7 +10,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 
 const Slider = () => {
     return (
-        <div className="w-full h-[500px]">
+        <div className="w-full h-80 sm:h-[420px] md:h-[520px]">
 
             <Swiper
                 modules={[Pagination, Autoplay]}
@@ -21,7 +21,7 @@ const Slider = () => {
                 }}
                 speed={1000}
                 loop={true}
-                className="w-full h-[500px]"
+                className="w-full h-80 sm:h-[420px] md:h-[520px]"
             >
 
                 <SwiperSlide>

@@ -2,12 +2,14 @@ import React from 'react'
 
 const Intro = () => {
   return (
-   <section className="py-20 bg-white">
-
-        <h2 className="text-5xl font-bold text-center text-blue-600 mb-14">
-            About  me
-        </h2>
-    <div className="max-w-6xl mx-auto px-5 grid md:grid-cols-2 gap-12 items-center">
+    <section className="py-20 bg-white">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-blue-600 sm:text-5xl">
+            About me
+          </h2>
+        </div>
+        <div className="grid gap-12 items-center md:grid-cols-2">
 
         {/* LEFT IMAGE */}
 
@@ -40,6 +42,8 @@ const Intro = () => {
             </button>
 
         </div>
+
+      </div>
 
     </div>
 
