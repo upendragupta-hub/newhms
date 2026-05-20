@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import API from "../utils/api";
 import { Link, useNavigate } from "react-router-dom";
 import {
     clearDoctorSession,
@@ -17,6 +18,16 @@ const DoctorDashboard = () => {
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
     const [updatingId, setUpdatingId] = useState("");
+    const [profileData, setProfileData] = useState({
+        name: "",
+        specialization: "",
+        experience: "",
+        fee: "",
+        image: "",
+        email: "",
+        phone: "",
+        available: "true",
+    });
 
     const formatDate = (value) =>
         new Intl.DateTimeFormat("en-IN", {
@@ -52,6 +63,19 @@ const DoctorDashboard = () => {
 
             if (doctorResponse.data.success) {
                 setDoctor(doctorResponse.data.doctor);
+                setProfileData({
+                    name: doctorResponse.data.doctor.name || "",
+                    specialization: doctorResponse.data.doctor.specialization || "",
+                    experience: doctorResponse.data.doctor.experience?.toString() || "",
+                    fee: doctorResponse.data.doctor.fee?.toString() || "",
+                    image: doctorResponse.data.doctor.image || "",
+                    email: doctorResponse.data.doctor.email || "",
+                    phone: doctorResponse.data.doctor.phone || "",
+                    available:
+                        doctorResponse.data.doctor.available === false
+                            ? "false"
+                            : "true",
+                });
                 setDoctorSession({
                     token,
                     doctor: doctorResponse.data.doctor,
@@ -109,6 +133,62 @@ const DoctorDashboard = () => {
             );
         } finally {
             setUpdatingId("");
+        }
+    };
+
+    const handleProfileChange = (event) => {
+        const { name, value } = event.target;
+        setProfileData((current) => ({
+            ...current,
+            [name]: value,
+        }));
+    };
+
+    const handleProfileUpdate = async (event) => {
+        event.preventDefault();
+
+        try {
+            const payload = {
+                ...profileData,
+                experience: Number(profileData.experience),
+                fee: Number(profileData.fee),
+                available: profileData.available === "true",
+            };
+
+            const response = await API.put(
+                "/doctors/me",
+                payload,
+                {
+                    headers: getDoctorAuthHeaders(),
+                }
+            );
+
+            if (response.data.success) {
+                setDoctor(response.data.doctor);
+                setDoctorSession({
+                    token,
+                    doctor: response.data.doctor,
+                });
+                setProfileData({
+                    name: response.data.doctor.name || "",
+                    specialization: response.data.doctor.specialization || "",
+                    experience: response.data.doctor.experience?.toString() || "",
+                    fee: response.data.doctor.fee?.toString() || "",
+                    image: response.data.doctor.image || "",
+                    email: response.data.doctor.email || "",
+                    phone: response.data.doctor.phone || "",
+                    available:
+                        response.data.doctor.available === false
+                            ? "false"
+                            : "true",
+                });
+                alert(response.data.message || "Profile updated successfully.");
+            }
+        } catch (error) {
+            alert(
+                error.response?.data?.message ||
+                    "Profile update nahi ho pa raha."
+            );
         }
     };
 
@@ -209,6 +289,110 @@ const DoctorDashboard = () => {
                             {completedAppointments}
                         </p>
                     </div>
+                </section>
+
+                <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+                    <div className="mb-6 flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+                        <div>
+                            <h2 className="text-2xl font-semibold text-slate-900">
+                                Update your profile
+                            </h2>
+                            <p className="text-sm text-slate-500">
+                                Doctor profile details ko edit karein.
+                            </p>
+                        </div>
+                    </div>
+
+                    <form onSubmit={handleProfileUpdate} className="grid gap-4 md:grid-cols-2">
+                        <label className="space-y-2 text-sm text-slate-700">
+                            Name
+                            <input
+                                name="name"
+                                value={profileData.name}
+                                onChange={handleProfileChange}
+                                className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-400"
+                            />
+                        </label>
+                        <label className="space-y-2 text-sm text-slate-700">
+                            Specialization
+                            <input
+                                name="specialization"
+                                value={profileData.specialization}
+                                onChange={handleProfileChange}
+                                className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-400"
+                            />
+                        </label>
+                        <label className="space-y-2 text-sm text-slate-700">
+                            Experience (years)
+                            <input
+                                name="experience"
+                                type="number"
+                                min="0"
+                                value={profileData.experience}
+                                onChange={handleProfileChange}
+                                className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-400"
+                            />
+                        </label>
+                        <label className="space-y-2 text-sm text-slate-700">
+                            Fee
+                            <input
+                                name="fee"
+                                type="number"
+                                min="0"
+                                value={profileData.fee}
+                                onChange={handleProfileChange}
+                                className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-400"
+                            />
+                        </label>
+                        <label className="space-y-2 text-sm text-slate-700">
+                            Image URL
+                            <input
+                                name="image"
+                                value={profileData.image}
+                                onChange={handleProfileChange}
+                                className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-400"
+                            />
+                        </label>
+                        <label className="space-y-2 text-sm text-slate-700">
+                            Email
+                            <input
+                                name="email"
+                                type="email"
+                                value={profileData.email}
+                                onChange={handleProfileChange}
+                                className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-400"
+                            />
+                        </label>
+                        <label className="space-y-2 text-sm text-slate-700">
+                            Phone
+                            <input
+                                name="phone"
+                                value={profileData.phone}
+                                onChange={handleProfileChange}
+                                className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-400"
+                            />
+                        </label>
+                        <label className="space-y-2 text-sm text-slate-700">
+                            Availability
+                            <select
+                                name="available"
+                                value={profileData.available}
+                                onChange={handleProfileChange}
+                                className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-400"
+                            >
+                                <option value="true">Available</option>
+                                <option value="false">Not Available</option>
+                            </select>
+                        </label>
+                        <div className="md:col-span-2 flex justify-end">
+                            <button
+                                type="submit"
+                                className="rounded-2xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+                            >
+                                Update Profile
+                            </button>
+                        </div>
+                    </form>
                 </section>
 
                 <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
