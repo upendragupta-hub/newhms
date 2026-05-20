@@ -287,3 +287,79 @@ export const getDoctorProfile = async (req, res) => {
         });
     }
 };
+
+export const updateDoctorProfile = async (req, res) => {
+    try {
+        const {
+            name,
+            specialization,
+            experience,
+            fee,
+            image,
+            email,
+            phone,
+            available,
+            password,
+        } = req.body;
+
+        const normalizedExperience = normalizeNumber(experience);
+        const normalizedFee = normalizeNumber(fee);
+
+        if (normalizedExperience === null || normalizedFee === null) {
+            return res.status(400).json({
+                success: false,
+                message: "Experience aur fee valid number hone chahiye.",
+            });
+        }
+
+        const existingDoctor = await Doctor.findOne({ email });
+        if (existingDoctor && existingDoctor._id.toString() !== req.doctorId) {
+            return res.status(400).json({
+                success: false,
+                message: "Ye email kisi aur doctor ke paas already registered hai.",
+            });
+        }
+
+        const updateFields = {
+            name,
+            specialization,
+            experience: normalizedExperience,
+            fee: normalizedFee,
+            image,
+            email,
+            phone,
+            available,
+        };
+
+        if (password) {
+            updateFields.password = password;
+        }
+
+        const updatedDoctor = await Doctor.findByIdAndUpdate(
+            req.doctorId,
+            updateFields,
+            {
+                new: true,
+                runValidators: true,
+            }
+        ).select("-password");
+
+        if (!updatedDoctor) {
+            return res.status(404).json({
+                success: false,
+                message: "Doctor not found.",
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Doctor profile updated successfully.",
+            doctor: updatedDoctor,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+};

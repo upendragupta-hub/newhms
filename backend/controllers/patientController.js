@@ -148,3 +148,71 @@ export const getPatientProfile = async (req, res) => {
         });
     }
 };
+
+export const updatePatientProfile = async (req, res) => {
+    try {
+        const { name, email, phone, gender, age, address, password } = req.body;
+
+        const existingEmail = await Patient.findOne({
+            email,
+            _id: { $ne: req.patientId },
+        });
+        if (existingEmail) {
+            return res.status(400).json({
+                success: false,
+                message: "Ye email kisi aur patient ke paas already registered hai.",
+            });
+        }
+
+        const existingPhone = await Patient.findOne({
+            phone,
+            _id: { $ne: req.patientId },
+        });
+        if (existingPhone) {
+            return res.status(400).json({
+                success: false,
+                message: "Ye phone kisi aur patient ke paas already registered hai.",
+            });
+        }
+
+        const updateFields = {
+            name,
+            email,
+            phone,
+            gender,
+            age: age !== undefined ? age : undefined,
+            address,
+        };
+
+        if (password) {
+            updateFields.password = await bcrypt.hash(password, 10);
+        }
+
+        const updatedPatient = await Patient.findByIdAndUpdate(
+            req.patientId,
+            updateFields,
+            {
+                new: true,
+                runValidators: true,
+            }
+        ).select("-password");
+
+        if (!updatedPatient) {
+            return res.status(404).json({
+                success: false,
+                message: "Patient not found.",
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Patient profile updated successfully.",
+            patient: serializePatient(updatedPatient),
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+};
